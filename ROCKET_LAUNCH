@@ -1,0 +1,448 @@
+import pygame
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREY1 = (192,192,192)
+DRKGREY=(128,128,128)
+RED=(146,10,10)
+BLUE=(10,105,146)
+ORANGE=(222,166,54)
+BROWN = (153, 76, 0)
+GREEN = (0, 255, 0)
+PURPLE= (137,0,255)
+LIGHTBLACK = (32,32,32)
+YELLOWGREEN = (154,205,50)
+SKYBLUE = (135,206,250)
+LIGHTYELLOW = (255,255,51)
+LIGHTWHITE = (240,240,240)
+GREY = (128,128,128)
+LIGHTGREEN = (0,25,51)
+LIGHTGREY = (224,224,224)
+PURPLE1 = (204,153,255)
+DARKPURPLE = (51,0,102)
+LIGHTBLUE = (153,153,255)
+DARKBLUE = (3,18,111)
+def rocket(y):
+pygame.draw.ellipse(screen, GREY1, [201,101+y,100,250])
+pygame.draw.ellipse(screen, BLUE, [227,186+y,47,47])
+pygame.draw.ellipse(screen, DRKGREY, [225,185+y,50,50], 4)
+pygame.draw.polygon(screen, DRKGREY, [[230,340+y],
+[220,360+y], [270,340+y]])
+pygame.draw.polygon(screen, DRKGREY, [[270,340+y],
+[220,360+y], [280,360+y]])
+#Fire
+pygame.draw.polygon(screen, ORANGE, [[220,360+y],
+[280,360+y], [250,430+y]])
+
+pygame.draw.polygon(screen, LIGHTYELLOW, [[230,360+y],
+[270,360+y], [250,420+y]])
+pygame.draw.polygon(screen, RED, [[210,300+y], [200,360+y],
+[230,340+y]])
+pygame.draw.polygon(screen, RED, [[210,300+y], [190,340+y],
+[200,360+y]])
+pygame.draw.polygon(screen, RED, [[200,360+y], [190,340+y],
+[190,390+y]])
+pygame.draw.polygon(screen, RED, [[290,300+y], [270,340+y],
+[300,360+y]])
+pygame.draw.polygon(screen, RED, [[290,300+y], [300,360+y],
+[310,340+y]])
+pygame.draw.polygon(screen, RED, [[310,340+y], [300,360+y],
+[310,390+y]])
+pygame.draw.polygon(screen, RED, [[245,300+y], [255,300+y],
+[250,390+y]])
+pygame.draw.line(screen, RED, [208, 158+y], [292, 158+y], 7)
+font = pygame.font.SysFont('Bell Gothic Std Black', 25,
+True, False)
+text = font.render("F",True,PURPLE)
+screen.blit(text, [246, 240+y])
+text = font.render("S",True,PURPLE)
+screen.blit(text, [246, 260+y])
+text = font.render("3",True,PURPLE)
+screen.blit(text, [246, 280+y])
+
+pygame.init()
+
+size = (639, 399)
+screen = pygame.display.set_mode(size)
+pygame.display.set_caption("My Rocketship")
+
+done = False
+clock = pygame.time.Clock()
+ellipse_x=201
+ellipse_y = 101
+#--------Countdown loop-------------
+count =10
+# -------- Main Program Loop -----------
+while not done:
+# --- Main event loop
+for event in pygame.event.get():
+if event.type == pygame.QUIT:
+done = True
+
+# --- Game logic should go here
+# --- Drawing code should go here
+# First, clear the screen to white. Don't put other drawing
+commands
+# above this, or they will be erased with this command.
+screen.fill(WHITE)
+font = pygame.font.SysFont('Source Code Pro', 300, True,
+False)
+secondFont = pygame.font.SysFont('Source Code Pro', 75,
+True, False)
+# Render the text. "True" means anti-aliased text.
+# Black is the color. The variable BLACK was defined
+# above as a list of [0, 0, 0]
+# Note: This line creates an image of the letters,
+# but does not put it on the screen yet.
+
+if count<0:
+done=True
+else:
+text = font.render(str(count),True,BLACK)
+count=count-1
+# Put the image of the text on the screen at 250x250
+screen.blit(text, [250, 150])
+afterText = secondFont.render(str("Time untill
+LIFTOFF:"),True,RED)
+screen.blit(afterText, [20, 50])
+# --- Go ahead and update the screen with what we've drawn.
+pygame.display.flip()
+# --- Limit to 60 frames per second
+clock.tick(1)
+if count==0:
+done=True
+
+done=False
+ellipse_x = 201
+ellipse_y = 101
+
+#for a in range(100):
+# clock.tick(60)
+
+i=1
+
+#--------------Scene 1 loop-----------
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLACK)
+#Background
+pygame.draw.rect(screen,SKYBLUE,[0,0,699,390],0)
+pygame.draw.rect(screen,YELLOWGREEN,[0,320,699,399],0)
+
+pygame.draw.ellipse(screen, LIGHTWHITE, [100,45,48,42], 0)
+pygame.draw.ellipse(screen, LIGHTWHITE, [130,35,48,42], 0)
+pygame.draw.ellipse(screen, LIGHTWHITE, [150,45,48,42], 0)
+pygame.draw.ellipse(screen, LIGHTWHITE, [130,50,48,42], 0)
+pygame.draw.ellipse(screen, LIGHTWHITE, [460,45,48,42], 0)
+pygame.draw.ellipse(screen, LIGHTWHITE, [490,35,48,42], 0)
+pygame.draw.ellipse(screen, LIGHTWHITE, [520,45,48,42], 0)
+pygame.draw.ellipse(screen, LIGHTWHITE, [550,42,48,42], 0)
+#NASA Building
+pygame.draw.rect(screen,LIGHTGREEN,[500,170,540,190],0)
+pygame.draw.line(screen, LIGHTGREY, [500, 220], [699, 220],
+2)
+pygame.draw.rect(screen,LIGHTGREY,[540,228,105,130],2)
+pygame.draw.line(screen, LIGHTGREY, [592, 228], [592, 356],
+2)
+#Rocketship Stand
+pygame.draw.rect(screen,DARKPURPLE,[0,50,20,349],0)
+pygame.draw.polygon(screen,LIGHTBLACK,[[0,50],[10,20],[20,50]],0
+)
+pygame.draw.rect(screen,GREY,[0,389,400,10],0)
+pygame.draw.rect(screen,DARKPURPLE,[50,50,10,340],0)
+pygame.draw.rect(screen,GREY,[0,50,60,10],0)
+pygame.draw.line(screen,GREY, [20,60],[50,100],5)
+pygame.draw.line(screen,GREY, [20,100],[50,60],5)
+pygame.draw.line(screen,GREY, [20,100],[50,140],5)
+pygame.draw.line(screen,GREY, [20,140],[50,100],5)
+pygame.draw.line(screen,GREY, [20,140],[50,180],5)
+pygame.draw.line(screen,GREY, [20,180],[50,140],5)
+pygame.draw.line(screen,GREY, [20,180],[50,220],5)
+pygame.draw.line(screen,GREY, [20,220],[50,180],5)
+pygame.draw.line(screen,GREY, [20,220],[50,260],5)
+pygame.draw.line(screen,GREY, [20,260],[50,220],5)
+pygame.draw.line(screen,GREY, [20,260],[50,300],5)
+pygame.draw.line(screen,GREY, [20,300],[50,260],5)
+pygame.draw.line(screen,GREY, [20,300],[50,340],5)
+pygame.draw.line(screen,GREY, [20,340],[50,300],5)
+
+pygame.draw.line(screen,GREY, [20,340],[50,380],5)
+pygame.draw.line(screen,GREY, [20,380],[50,340],5)
+pygame.draw.rect(screen,GREY,[0,380,60,10],0)
+pygame.draw.rect(screen,LIGHTBLUE,[120,350,65,39],0)
+pygame.draw.rect(screen,LIGHTBLUE,[315,350,85,39],0)
+pygame.draw.line(screen,LIGHTGREEN, [60,352],[120,352],5)
+pygame.draw.line(screen,LIGHTGREEN, [60,386],[120,386],5)
+pygame.draw.line(screen,LIGHTGREEN, [60,370],[120,370],5)
+pygame.draw.line(screen,LIGHTGREEN, [62,352],[62,386],5)
+pygame.draw.rect(screen,GREY,[60,200,130,20],0)
+font = pygame.font.SysFont('Calibri', 25, True, False)
+text = font.render("NASA",True,LIGHTGREY)
+screen.blit(text, [560, 200])
+#Rocketship
+rocket(ellipse_y)
+pygame.display.flip()
+if i==1:
+clock.tick(1);
+i=2
+else:
+clock.tick(60)
+
+#------------------------start of scene 2
+
+for ellipse_y in range(399,-200,-10):
+screen.fill(SKYBLUE)
+#Background
+pygame.draw.ellipse(screen, LIGHTGREY, [100,45,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [130,35,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [150,45,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [130,50,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [460,45,48,44], 0)
+
+pygame.draw.ellipse(screen, LIGHTGREY, [490,35,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [520,45,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [550,42,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [100,250,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [130,240,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [150,250,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [130,240,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [460,250,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [490,240,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [520,250,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [550,240,48,44], 0)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 10
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 3
+for ellipse_y in range(399,-200,-10):
+screen.fill(SKYBLUE)
+#Background
+pygame.draw.ellipse(screen, LIGHTGREY, [150,80,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [180,70,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [200,80,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [180,90,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [200,250,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [230,240,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [250,250,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [230,240,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [460,200,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [490,190,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [520,200,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [550,190,48,44], 0)
+
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 10
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 4
+for ellipse_y in range(399,-200,-10):
+screen.fill(LIGHTBLUE)
+#Background
+pygame.draw.ellipse(screen, LIGHTGREY, [300,250,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [330,240,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [350,250,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [330,240,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [440,210,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [470,200,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [500,210,48,44], 0)
+pygame.draw.ellipse(screen, LIGHTGREY, [530,200,48,44], 0)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 10
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 5
+for ellipse_y in range(399,-200,-10):
+screen.fill(LIGHTBLUE)
+#Rocketship
+rocket(ellipse_y)
+
+ellipse_y -= 10
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 6
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLUE)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 10
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 7
+for ellipse_y in range(399,-200,-10):
+screen.fill(DARKBLUE)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 10
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 8
+for ellipse_y in range(399,-200,-10):
+screen.fill(LIGHTBLACK)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 10
+
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 9
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLACK)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 10
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 10
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLACK)
+#Background
+pygame.draw.circle(screen, WHITE, [400, -100], 150)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 5
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 10
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLACK)
+#Background
+pygame.draw.circle(screen, WHITE, [400, -50], 200)
+
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 5
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 11
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLACK)
+#Background
+pygame.draw.circle(screen, WHITE, [420, -20], 250)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 5
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 12
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLACK)
+#Background
+pygame.draw.circle(screen, WHITE, [260, 150], 250)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 50
+pygame.display.flip()
+
+clock.tick(60)
+#------------------------Start of scene 13
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLACK)
+#Background
+pygame.draw.circle(screen, WHITE, [260, 150], 1)
+pygame.draw.circle(screen, WHITE, [313, 333], 1)
+pygame.draw.circle(screen, WHITE, [599, 330], 1)
+pygame.draw.circle(screen, WHITE, [276, 189], 1)
+pygame.draw.circle(screen, WHITE, [623, 276], 1)
+pygame.draw.circle(screen, WHITE, [521, 59], 1)
+pygame.draw.circle(screen, WHITE, [83, 111], 1)
+pygame.draw.circle(screen, WHITE, [201, 33], 1)
+pygame.draw.circle(screen, WHITE, [55, 340], 1)
+pygame.draw.circle(screen, WHITE, [99, 209], 1)
+pygame.draw.circle(screen, WHITE, [159, 112], 1)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 5
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 14
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLACK)
+#Background
+pygame.draw.circle(screen, ORANGE, [250, -50], 150)
+pygame.draw.circle(screen, WHITE, [260, 150], 1)
+pygame.draw.circle(screen, WHITE, [313, 333], 1)
+pygame.draw.circle(screen, WHITE, [599, 330], 1)
+pygame.draw.circle(screen, WHITE, [276, 189], 1)
+
+pygame.draw.circle(screen, WHITE, [623, 276], 1)
+pygame.draw.circle(screen, WHITE, [521, 59], 1)
+pygame.draw.circle(screen, WHITE, [83, 111], 1)
+pygame.draw.circle(screen, WHITE, [55, 340], 1)
+pygame.draw.circle(screen, WHITE, [99, 209], 1)
+pygame.draw.circle(screen, WHITE, [159, 112], 1)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 5
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 15
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLACK)
+#Background
+pygame.draw.circle(screen, ORANGE, [250, -10], 200)
+pygame.draw.circle(screen, WHITE, [213, 370], 1)
+pygame.draw.circle(screen, WHITE, [599, 330], 1)
+pygame.draw.circle(screen, WHITE, [623, 276], 1)
+pygame.draw.circle(screen, WHITE, [521, 59], 1)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 5
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 16
+for ellipse_y in range(399,-200,-10):
+
+screen.fill(BLACK)
+#Background
+pygame.draw.circle(screen, ORANGE, [250, 150], 250)
+#Rocketship
+rocket(ellipse_y)
+ellipse_y -= 50
+pygame.display.flip()
+clock.tick(60)
+#------------------------Start of scene 17
+for ellipse_y in range(399,-200,-10):
+screen.fill(BLACK)
+#Background
+pygame.draw.rect(screen, ORANGE, [0, 350, 660, 60])
+#Rocketship
+pygame.draw.ellipse(screen, GREY1, [201,101,100,250])
+pygame.draw.ellipse(screen, BLUE, [227,186,47,47])
+pygame.draw.ellipse(screen, DRKGREY, [225,185,50,50], 4)
+pygame.draw.polygon(screen, DRKGREY, [[230,340], [220,360],
+[270,340]])
+pygame.draw.polygon(screen, DRKGREY, [[270,340], [220,360],
+[280,360]])
+pygame.draw.polygon(screen, RED, [[210,300], [200,360],
+[230,340]])
+pygame.draw.polygon(screen, RED, [[210,300], [190,340],
+[200,360]])
+pygame.draw.polygon(screen, RED, [[200,360], [190,340],
+[190,390]])
+pygame.draw.polygon(screen, RED, [[290,300], [270,340],
+[300,360]])
+
+pygame.draw.polygon(screen, RED, [[290,300], [300,360],
+[310,340]])
+pygame.draw.polygon(screen, RED, [[310,340], [300,360],
+[310,390]])
+pygame.draw.polygon(screen, RED, [[245,300], [255,300],
+[250,390]])
+pygame.draw.line(screen, RED, [208, 158], [292, 158], 7)
+font = pygame.font.SysFont('Bell Gothic Std Black', 25,
+True, False)
+text = font.render("F",True,PURPLE)
+screen.blit(text, [246, 240])
+text = font.render("S",True,PURPLE)
+screen.blit(text, [246, 260])
+text = font.render("3",True,PURPLE)
+screen.blit(text, [246, 280])
+#Flag
+pygame.draw.line(screen, GREY, [500,370], [500, 250], 5)
+pygame.draw.line(screen, SKYBLUE, [550,255], [500, 255], 50)
+pygame.display.flip()
+clock.tick(60)
+#------------------------End of scenes
+pygame.quit()
